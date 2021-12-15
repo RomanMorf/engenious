@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script defer src="main.js"></script>
   <title>Engenious - 1 test task</title>
 </head>
 <body>
@@ -12,40 +13,15 @@
     <div class="field">
       <table>
         <tbody id="table">
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <div class="btn add" data="create-col"></div>
-          <div class="btn add" data="create-row"></div>
-          <div class="btn del" data="delete-row"></div>
-          <div class="btn del" data="delete-col"></div>
-  
+          <div class="buttons">
+            <div class="btn add" id="add-col" data="create-col"></div>
+            <div class="btn add" id="add-row" data="create-row"></div>
+            <div class="btn del" id="remove-row" data="delete-row"></div>
+            <div class="btn del" id="remove-col" data="delete-col"></div>
+          </div>
         </tbody>
       </table>
-
     </div>
   </div>
 </body>
-<script src="main.js"></script>
 </html>

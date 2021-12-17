@@ -11,16 +11,16 @@
 <body>
   <div class="container">
     <div class="field">
-      <table>
-        <tbody id="table">
-          <div class="buttons">
-            <div class="btn add" id="add-col" data="create-col"></div>
-            <div class="btn add" id="add-row" data="create-row"></div>
-            <div class="btn del" id="remove-row" data="delete-row"></div>
-            <div class="btn del" id="remove-col" data="delete-col"></div>
-          </div>
+      <table id="table">
+        <tbody >
         </tbody>
       </table>
+      <div class="buttons">
+        <div class="btn add" id="add-col" type="plus" key="cols"></div>
+        <div class="btn add" id="add-row" type="plus" key="rows"></div>
+        <div class="btn del" id="remove-row" type="minus"  key="rows"></div>
+        <div class="btn del" id="remove-col" type="minus"  key="cols"></div>
+      </div>
     </div>
   </div>
 </body>

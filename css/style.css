@@ -1,0 +1,131 @@
+body {
+  height: 100vh;
+}
+
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  min-height: 100%;
+}
+
+.field {
+  position: relative;
+  padding: 10px;
+}
+
+table {
+  padding: 1px;
+  border: 1px solid blue;
+}
+
+table td {
+  width: 100px;
+  height: 100px;
+  background-color: #00a4af;
+}
+
+.btn {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  border: 1px solid blue;
+  -webkit-transition: background-color 1s ease;
+  transition: background-color 1s ease;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.btn.add {
+  background-color: #c4c403;
+}
+
+.btn.add::before {
+  content: '';
+  width: 20px;
+  height: 5px;
+  background-color: white;
+  border-radius: 10px;
+  position: absolute;
+}
+
+.btn.add::after {
+  content: '';
+  width: 20px;
+  height: 5px;
+  background-color: white;
+  border-radius: 10px;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+  position: absolute;
+}
+
+.btn.add:hover {
+  background-color: rgba(196, 196, 3, 0.5);
+}
+
+.btn.del {
+  background-color: #b60202;
+  opacity: 0;
+  top: 14px;
+  left: 14px;
+  z-index: -1;
+}
+
+.btn.del.hovered {
+  opacity: 1;
+  z-index: 10;
+  left: -95px;
+  top: 13px;
+  -webkit-transition: background-color 1s ease;
+  transition: background-color 1s ease;
+}
+
+.btn.del::before {
+  content: '';
+  width: 20px;
+  height: 5px;
+  background-color: white;
+  border-radius: 10px;
+  position: absolute;
+}
+
+.btn.del:hover {
+  background-color: rgba(182, 2, 2, 0.5);
+}
+
+.btn.del:nth-child(3) {
+  top: 14px;
+  -webkit-transition: top .3s ease;
+  transition: top .3s ease;
+}
+
+.btn.del:nth-child(4) {
+  top: -95px;
+  -webkit-transition: left .3s ease;
+  transition: left .3s ease;
+}
+
+.btn:nth-child(1) {
+  right: -95px;
+  top: 14px;
+}
+
+.btn:nth-child(2) {
+  bottom: -95px;
+  left: 14px;
+}

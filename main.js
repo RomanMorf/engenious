@@ -1,68 +1,56 @@
 const table = document.querySelector('#table')
-const buttons = document.querySelectorAll('.btn')
 const tableField = document.querySelector('.field')
+const buttons = document.querySelector('.buttons')
+const btnRemoveRow = document.querySelector('#remove-row')
+const btnRemoveCol = document.querySelector('#remove-col')
+const btnAddRow = document.querySelector('#add-row')
+const btnAddCol = document.querySelector('#add-col')
 
 let field = {
   cols: 4,
   rows: 4,
 }
 
-tableField.addEventListener('mouseover', (event)=> { // слущатель события mouseover
-  if (field.rows > 1 && event.target.localName === 'td') {
-    buttons[2].classList.add('hovered')
-    if (event.target.localName === 'td') {
-      buttons[2].style.top = `${event.layerY - event.offsetY}px`
-    }
-  }
-
-  if (field.cols > 1 && event.target.localName === 'td') {
-    if (event.target.localName === 'td') {
-      buttons[3].style.left = `${event.layerX - event.offsetX}px`
-    }
-    buttons[3].classList.add('hovered')
-  }
+tableField.addEventListener('mouseover', (event)=> {
+  const cellHover = event.target.localName === 'td'
 
   if (event.target.className === 'btn add') {
-    buttons[2].classList.remove('hovered')
-    buttons[3].classList.remove('hovered')
+    btnRemoveRow.classList.remove('hovered')
+    btnRemoveCol.classList.remove('hovered')
+    return
+  }
+
+  if (field.rows > 1 && cellHover) {
+    btnRemoveRow.classList.add('hovered')
+    btnRemoveRow.style.top = `${event.layerY - event.offsetY}px`
+  }
+
+  if (field.cols > 1 && cellHover) {
+    btnRemoveCol.style.left = `${event.layerX - event.offsetX}px`
+    btnRemoveCol.classList.add('hovered')
   }
 })
 
-tableField.addEventListener('mouseleave', (event)=> { // слущатель события mouseleave
-  buttons[2].classList.remove('hovered')
-  buttons[3].classList.remove('hovered')
+tableField.addEventListener('mouseleave', ()=> {
+  btnRemoveRow.classList.remove('hovered')
+  btnRemoveCol.classList.remove('hovered')
 })
 
-buttons.forEach(el => el.addEventListener('click', btnHandle))
+buttons.addEventListener('click', btnHandle)
 
-function btnHandle(event) { // обработка кликов по кнопкам
-  switch (event.target.attributes[1].value) {
-    case data="delete-col":
-      --field.cols
-      createTable()
-      break;
-
-    case data="delete-row":
-      --field.rows
-      createTable()
-      break;
-
-    case data="create-col":
-      field.cols++
-      createTable()
-      break;
-
-    case data="create-row":
-      field.rows++
-      createTable()
-      break;
-
-    default:
-      break;
+function btnHandle(event) {
+  const key = event.target.attributes.key.value
+  const type = event.target.attributes.type.value
+  field = {
+    ...field,
+    [key]: type === 'plus' ? ++field[key] : --field[key]
   }
+  renderTable()
 }
 
-function createTable() { // создание таблицы
+function renderTable() {
+  clearTable()
+  hideButtons()
   const fragment = document.createDocumentFragment()
   const tBody = document.createElement('tbody')
   for (i = 1; i <= field.rows; i++) {
@@ -73,22 +61,17 @@ function createTable() { // создание таблицы
     }
     fragment.appendChild(row)
   }
-  cleareTable() // очистка таблицы
-  checkButtons() // проверка кнопок
-  table.appendChild(fragment)
+  tBody.appendChild(fragment)
+  table.appendChild(tBody)
 }
 
-function cleareTable() { // очистка таблицы
-  table.innerHTML = ''
+function clearTable() {
+  table.removeChild(table.lastElementChild)
 }
 
-function checkButtons() { // проверка, можно ли отрисовывать кнопки
-  if (field.rows < 2) {
-    buttons[2].classList.remove('hovered')
-  }
-  if (field.cols < 2) {
-    buttons[3].classList.remove('hovered')
-  }
+function hideButtons() {
+  btnRemoveRow.classList.remove('hovered')
+  btnRemoveCol.classList.remove('hovered')
 }
 
-createTable()
+renderTable()

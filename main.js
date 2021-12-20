@@ -66,9 +66,7 @@ function renderTable() {
 }
 
 function clearTable() {
-  while (table.firstChild) {
-    table.removeChild(table.firstChild)
-  }
+  table.removeChild(table.lastElementChild)
 }
 
 function hideButtons() {
